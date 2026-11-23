@@ -1,0 +1,20 @@
+on: 
+    push:
+        branches:
+            - main
+            - "release/**"
+        paths: # for a single path soe if the repo have something like a documentatin it doesnt run the CICD
+            - "src/**"
+    pull_request:
+        branches:
+            - main
+            - "release/**"
+jobs:
+    test:
+        runs-on: ubuntu:latest
+        steps:
+            - name: Checkout Code 
+              uses: actions/checkout@v6.1.0
+          
+            - name: Run tests
+              run: npm test
